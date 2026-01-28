@@ -154,3 +154,68 @@ footer {
     padding: 40px;
     text-align: center;
 }
+
+/* =========================================
+   RESPONSIVE UNTUK HP (Mobile)
+   ========================================= */
+@media screen and (max-width: 768px) {
+    /* 1. Atur Navbar agar tidak tumpang tindih */
+    nav {
+        flex-direction: column; /* Menu pindah ke bawah logo */
+        padding: 15px 2%;
+        height: auto;
+    }
+
+    .logo-wrapper {
+        margin-bottom: 10px; /* Jarak antara logo dan menu */
+    }
+
+    .logo-text {
+        font-size: 1.4rem; /* Kecilkan dikit tulisan di HP */
+    }
+
+    .nav-logo-img {
+        height: 35px; /* Kecilkan logo dikit di HP */
+    }
+
+    nav ul {
+        width: 100%;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    nav ul li {
+        margin: 0 8px; /* Rapatkan jarak antar menu */
+    }
+
+    nav ul li a {
+        font-size: 0.9rem;
+    }
+
+    /* 2. Atur Hero Section agar teks tidak terlalu besar */
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    /* 3. Atur Layout Edukasi (Tabel & Maskot) */
+    .edu-container {
+        flex-direction: column; /* Maskot pindah ke bawah tabel */
+        align-items: center;
+    }
+
+    .edu-maskot {
+        position: static; /* Hilangkan efek sticky di HP agar tidak aneh */
+        margin-top: 30px;
+        order: -1; /* Pindahkan maskot ke ATAS tabel khusus di HP */
+    }
+
+    .floating-maskot {
+        width: 180px; /* Kecilkan maskot di HP */
+    }
+
+    /* 4. Atur Kotak Deskripsi */
+    .Deskripsi {
+        margin: -30px 15px 30px; /* Beri jarak kiri kanan agar tidak nempel layar */
+        padding: 25px;
+    }
+}
