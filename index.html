@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoFin - Solusi Cerdas Kelola Plastik</title>
+    <link rel="stylesheet" href="Style.Css">
+</head>
+<body>
+
+   <nav>
+    <div class="logo-wrapper">
+        <img src="Images/Logo.png" alt="Logo EcoFin" class="nav-logo-img">
+        <span class="logo-text">ECOFIN</span>
+    </div>
+    <ul>
+        <li><a href="#home">Beranda</a></li>
+        <li><a href="#edukasi">Edukasi</a></li>
+        <li><a href="#purchase">Purchase</a></li>
+    </ul>
+</nav>
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Satu Langkah Kecil untuk Bumi yang Lebih Hijau</h1>
+            <p>"Sampahmu adalah tanggung jawabmu. Mari belajar mengelola agar tidak menjadi bencana."</p>
+        </div>
+    </section>
+
+    <div class="Deskripsi">
+        <p class="highlight">Halo! Aku <span>Fin</span>, si Pesut Mahakam.</p>
+        <p>Tahukah kamu? Aku dan keluargaku di Sungai Mahakam kini terancam punah karena limbah plastik. Yuk, bantu aku menjaga rumah kita tetap bersih!</p>
+    </div>
+
+    <section id="edukasi" class="info-section">
+        <h2>Edukasi Bahaya Sampah Plastik</h2>
+        
+        <div class="edu-container">
+            <div class="edu-text">
+                <div class="card">
+                    <h3>Kenapa Hanya Plastik?</h3>
+                    <p>Plastik adalah sampah masif. Ratusan ton berputar setiap jam di dunia. Kami fokus pada plastik minuman (botol & gelas) karena intensitas penggunaannya yang sangat tinggi.</p>
+                </div>
+
+                <div class="card warning">
+                    <h3>Bahaya Mikroplastik</h3>
+                    <p>Plastik tidak hilang, mereka hancur menjadi partikel kecil (mikroplastik) yang merusak ekosistem laut dan masuk ke rantai makanan manusia.</p>
+                </div>
+
+                <div class="tabel-sampah">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Benda Plastik</th>
+                                <th>Estimasi Waktu Terurai</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Botol Minuman</td><td>450 Tahun</td></tr>
+                            <tr><td>Sedotan Plastik</td><td>200 Tahun</td></tr>
+                            <tr><td>Kantong Kresek</td><td>10 - 20 Tahun</td></tr>
+                            <tr><td>Gelas Plastik</td><td>50 Tahun</td></tr>
+                            <tr><td>Wadah Styrofoam</td><td>Tidak Terbatas</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="edu-maskot">
+                <img src="Images/4.jpeg" alt="Maskot EcoFin" class="floating-maskot">
+                <p>Mengenal Jenis Plastik: <br>PET, HDPE, PVC, LDPE, PP, PS.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 ECOFIN - Project Akhir Jessy</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const scrollPos = window.scrollY;
+            const heroOverlay = document.querySelector('.hero-overlay');
+            const heroContent = document.querySelector('.hero-content');
+            
+            // Mengatur opacity berdasarkan scroll
+            let opacityValue = 1 - (scrollPos / 600);
+            if (opacityValue < 0) opacityValue = 0;
+            
+            heroOverlay.style.opacity = opacityValue;
+            heroContent.style.opacity = opacityValue;
+        });
+    </script>
+</body>
+</html>
