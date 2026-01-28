@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoFin - Kalkulator Jejak Plastik</title>
+    <link rel="icon" type="image/png" href="Images/Logo.png"> <link rel="stylesheet" href="Style.Css">
+</head>
+<body class="kalkulator-page">
+    <nav>
+        <div class="logo-wrapper">
+            <img src="Images/Logo.png" alt="Logo EcoFin" class="nav-logo-img">
+            <span class="logo-text">ECOFIN</span>
+        </div>
+        <ul <li>
+    <button id="dark-mode-toggle" style="background:none; border:none; cursor:pointer; font-size:1.2rem;">
+        🌙
+    </button>
+</li>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="kalkulator.html" style="color: var(--accent-blue);">Kalkulator</a></li>
+            <li><a href="games.html">Mini Games</a></li>
+        </ul>
+    </nav>
+
+    <div class="calc-container reveal active">
+        <h2>Kalkulator Jejak Plastik 🧮</h2>
+        <p>Hitung berapa lama sampahmu akan bertahan di Bumi jika tidak didaur ulang.</p>
+
+        <div class="calc-form">
+            <label>Jumlah Botol Minum (PET) / Minggu:</label>
+            <input type="number" id="input-botol" placeholder="0">
+            
+            <label>Jumlah Kantong Kresek (LDPE) / Minggu:</label>
+            <input type="number" id="input-kresek" placeholder="0">
+            
+            <label>Jumlah Wadah Styrofoam (PS) / Minggu:</label>
+            <input type="number" id="input-styrofoam" placeholder="0">
+
+            <button onclick="hitungJejak()" class="btn-play">Hitung Dampak</button>
+        </div>
+
+        <div id="result-area" style="display:none;">
+            <br>
+            <h3>Hasil Analisis EcoFin:</h3>
+            <p id="result-text"></p>
+            <div class="warning-box">
+                Ingat, Fin dan keluarganya di Sungai Mahakam terancam oleh sampah ini! 🐬
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function hitungJejak() {
+            const botol = document.getElementById('input-botol').value || 0;
+            const kresek = document.getElementById('input-kresek').value || 0;
+            const styrofoam = document.getElementById('input-styrofoam').value || 0;
+
+            // Berdasarkan data FAQ Mister Deni
+            const totalTahun = (botol * 450) + (kresek * 20);
+            const styroMessage = styrofoam > 0 ? "Dan Styrofoam yang kamu gunakan tidak akan pernah hancur selamanya!" : "";
+
+            const resultArea = document.getElementById('result-area');
+            const resultText = document.getElementById('result-text');
+
+            resultArea.style.display = "block";
+            resultText.innerHTML = `Sampah mingguanmu butuh sekitar <strong>${totalTahun.toLocaleString('id-ID')} tahun</strong> untuk terurai secara alami. ${styroMessage}`;
+        }
+    </script>
+
+    <script>
+    const toggleBtn = document.getElementById('dark-mode-toggle');
+    const body = document.body;
+
+    // Fungsi untuk mengatur tema
+    function setTheme(isDark) {
+        if (isDark) {
+            body.classList.add('dark-mode');
+            toggleBtn.innerText = '☀️';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            body.classList.remove('dark-mode');
+            toggleBtn.innerText = '🌙';
+            localStorage.setItem('theme', 'light');
+        }
+    }
+
+    // Cek pilihan terakhir user saat halaman dibuka
+    if (localStorage.getItem('theme') === 'dark') {
+        setTheme(true);
+    }
+
+    // Event Klik Tombol
+    toggleBtn.addEventListener('click', () => {
+        const isDark = body.classList.contains('dark-mode');
+        setTheme(!isDark);
+    });
+</script>
+</body>
+</html>

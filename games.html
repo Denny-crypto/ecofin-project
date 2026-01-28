@@ -12,9 +12,14 @@
         <img src="Images/Logo.png" alt="Logo EcoFin" class="nav-logo-img">
         <span class="logo-text">ECOFIN</span>
     </div>
-    <ul>
+    <ul <li>
+    <button id="dark-mode-toggle" style="background:none; border:none; cursor:pointer; font-size:1.2rem;">
+        🌙
+    </button>
+</li>
         <li><a href="index.html">Beranda</a></li>
-        <li><a href="game.html" style="color: #3a7bd5;">Mini Games</a></li>
+        <li><a href="games.html" style="color: #3a7bd5;">Mini Games</a></li>
+        <li><a href="kalkulator.html">Kalkulator</a></li>
     </ul>
 </nav>
 
@@ -92,6 +97,29 @@
                 message.style.color = "#e63946";
             }
         });
+    });
+</script>
+
+<script>
+    const toggleBtn = document.getElementById('dark-mode-toggle');
+    const body = document.body;
+
+    // Cek apakah user sebelumnya sudah pilih dark mode
+    if (localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark-mode');
+        toggleBtn.innerText = '☀️';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        
+        if (body.classList.contains('dark-mode')) {
+            localStorage.setItem('theme', 'dark');
+            toggleBtn.innerText = '☀️'; // Ganti ikon jadi matahari
+        } else {
+            localStorage.setItem('theme', 'light');
+            toggleBtn.innerText = '🌙'; // Ganti ikon jadi bulan
+        }
     });
 </script>
 </body>

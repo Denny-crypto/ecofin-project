@@ -6,11 +6,39 @@
     scroll-behavior: smooth;
 }
 
+/* Variabel Warna Utama */
 :root {
+    --bg-color: #f8faf8;
+    --text-color: #333;
+    --card-bg: #ffffff;
+    --nav-bg: rgba(255, 255, 255, 0.95);
     --primary-green: #1b4332;
     --nature-green: #2d6a4f;
     --light-green: #d8f3dc;
-    --accent-blue: #3a7bd5;
+}
+
+/* Variabel Saat Dark Mode Aktif */
+body.dark-mode {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --card-bg: #1e1e1e;
+    --nav-bg: rgba(30, 30, 30, 0.98);
+    --primary-green: #40916c;
+    --nature-green: #52b788;
+    --light-green: #1b4332;
+}
+
+/* Terapkan variabel ke elemen global */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background 0.3s, color 0.3s;
+}
+
+nav { background: var(--nav-bg) !important; }
+.card, .bin, .item, .calc-form, table, .Deskripsi { 
+    background-color: var(--card-bg) !important; 
+    color: var(--text-color);
 }
 
 body {
@@ -90,6 +118,29 @@ nav ul li a {
 }
 
 .hero-content h1 { font-size: 3.5rem; margin-bottom: 20px; }
+
+.counter-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#plastic-counter {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #ffd700; /* Warna emas agar kontras dengan hijau */
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    font-family: 'Courier New', Courier, monospace; /* Gaya digital */
+    margin: 10px 0;
+}
+
+.counter-container p {
+    font-size: 1rem;
+    color: white;
+}
 
 /* Deskripsi Kotak */
 .Deskripsi {
@@ -197,6 +248,67 @@ footer {
     text-align: center;
 }
 
+/* Efek dasar untuk elemen yang akan di-scroll */
+.reveal {
+    position: relative;
+    transform: translateY(30px);
+    opacity: 0;
+    transition: 1s all ease;
+}
+
+/* Class yang akan ditambahkan lewat JavaScript saat scroll */
+.reveal.active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Animasi khusus untuk angka di tabel agar lebih menonjol */
+.stat-highlight {
+    font-weight: 900;
+    color: var(--nature-green);
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.stat-highlight:hover {
+    transform: scale(1.2) rotate(2deg);
+}
+
+.calc-container {
+    padding: 140px 8% 60px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.calc-form {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+}
+
+.calc-form input {
+    padding: 12px;
+    border: 1px solid var(--light-green);
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.warning-box {
+    margin-top: 20px;
+    padding: 15px;
+    background: #fff5f5;
+    border-left: 5px solid #e63946;
+    color: #e63946;
+    font-weight: bold;
+}
+
 /* =========================================
    RESPONSIVE UNTUK HP (Mobile)
    ========================================= */
@@ -228,6 +340,28 @@ footer {
         width: 140px; 
         height: 160px;
     }
+
+    /* Tambahkan ini di dalam media query mobile */
+#plastic-counter {
+    font-size: 2rem; /* Kecilkan dari 3rem agar pas di layar HP */
+    letter-spacing: 1px;
+}
+
+.counter-container {
+    padding: 15px;
+    margin: 20px 5%; /* Beri jarak aman di kiri-kanan */
+}
+
+/* Tambahkan ini di dalam media query mobile */
+#dark-mode-toggle {
+    margin-top: 10px; /* Beri jarak agar tidak menempel dengan menu Purchase */
+    font-size: 1.5rem; /* Perbesar sedikit agar mudah ditekan jempol */
+}
+
+/* Tambahkan ini di dalam media query mobile */
+.reveal {
+    transition: 0.6s all ease; /* Percepat durasi animasi di HP agar lebih responsif */
+}
 
     nav ul {
         width: 100%;
@@ -271,6 +405,45 @@ footer {
     }
 }
 
+@media screen and (max-width: 768px) {
+    /* 1. Atur Kontainer Kalkulator */
+    .calc-container {
+        padding: 160px 5% 40px; /* Jarak atas lebih besar agar tidak kena navbar tumpuk */
+    }
+
+    .calc-container h2 {
+        font-size: 1.5rem; /* Kecilkan judul agar tidak pecah dua baris */
+    }
+
+    /* 2. Atur Form Input */
+    .calc-form {
+        padding: 20px;
+        gap: 10px;
+    }
+
+    .calc-form label {
+        font-size: 0.85rem; /* Kecilkan teks label agar pas di layar sempit */
+    }
+
+    .calc-form input {
+        padding: 10px;
+        font-size: 1rem; /* Ukuran standar agar keyboard HP tidak otomatis zoom */
+    }
+
+    /* 3. Atur Hasil Analisis */
+    #result-area h3 {
+        font-size: 1.2rem;
+    }
+
+    #result-text {
+        font-size: 0.95rem;
+    }
+
+    .warning-box {
+        font-size: 0.85rem;
+        padding: 12px;
+    }
+}
 
 /* =========================================
    STYLE KHUSUS HALAMAN GAME
