@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoFin Game - Bantu Fin Pilah Sampah</title>
+    <link rel="stylesheet" href="Style.Css">
+</head>
+<body>
+    <nav>
+    <div class="logo-wrapper">
+        <img src="Images/Logo.png" alt="Logo EcoFin" class="nav-logo-img">
+        <span class="logo-text">ECOFIN</span>
+    </div>
+    <ul>
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="game.html" style="color: #3a7bd5;">Mini Games</a></li>
+    </ul>
+</nav>
+
+    <div class="game-full-page">
+    <h2>Bantu Fin Pilah Sampah!</h2>
+    <br>
+    <p>Berdasarkan data ECOFIN, plastik butuh ratusan tahun untuk terurai. Yuk pilah!</p>
+    
+    <div id="score-board">Skor: <span id="score">0</span></div>
+
+    <div class="game-area">
+        <div class="trash-items">
+            <div class="item" draggable="true" id="botol" data-type="PET">🧴 Botol Minum Kemasan</div>
+            <div class="item" draggable="true" id="kresek" data-type="LDPE">🛍️ Kantong Kresek</div>
+            <div class="item" draggable="true" id="styrofoam" data-type="PS">🍱 Wadah Styrofoam</div>
+            <div class="item" draggable="true" id="sikat" data-type="PET">🪥 Sikat Gigi</div>
+        </div>
+
+        <div class="bins">
+            <div class="bin" id="PET">
+                <span>PET</span>
+                <p>(400-450 Thn)</p>
+            </div>
+            <div class="bin" id="LDPE">
+                <span>LDPE</span>
+                <p>(20 Thn)</p>
+            </div>
+            <div class="bin" id="PS">
+                <span>PS</span>
+                <p>(∞)</p>
+            </div>
+        </div>
+    </div>
+    <div id="game-message"></div>
+    <button onclick="location.reload()" id="btn-reset" style="display:none;">Main Lagi</button>
+</div>
+
+<script>
+    let score = 0;
+    const items = document.querySelectorAll('.item');
+    const bins = document.querySelectorAll('.bin');
+    const message = document.getElementById('game-message');
+    const scoreDisplay = document.getElementById('score');
+
+    items.forEach(item => {
+        item.addEventListener('dragstart', (e) => {
+            e.dataTransfer.setData('text', e.target.id);
+        });
+    });
+
+    bins.forEach(bin => {
+        bin.addEventListener('dragover', (e) => e.preventDefault());
+        bin.addEventListener('dragenter', (e) => bin.classList.add('hover'));
+        bin.addEventListener('dragleave', () => bin.classList.remove('hover'));
+
+        bin.addEventListener('drop', (e) => {
+            bin.classList.remove('hover');
+            const itemId = e.dataTransfer.getData('text');
+            const item = document.getElementById(itemId);
+            
+            if (item.getAttribute('data-type') === bin.id) {
+                score += 10;
+                scoreDisplay.innerText = score;
+                item.style.visibility = "hidden";
+                message.innerHTML = "Tepat! Kamu membantu menjaga Sungai Mahakam! 🐬";
+                message.style.color = "#2d6a4f";
+                
+                // Cek jika semua sampah sudah dipilah
+                if (score === 40) {
+                    message.innerHTML = "Luar Biasa! Fin sangat berterima kasih! 🎉";
+                    document.getElementById('btn-reset').style.display = "block";
+                }
+            } else {
+                message.innerHTML = "Ups! Jenis plastik itu tidak cocok di sini. ❌";
+                message.style.color = "#e63946";
+            }
+        });
+    });
+</script>
+</body>
+</html>

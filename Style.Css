@@ -24,12 +24,13 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 8%;
-    background: rgba(255, 255, 255, 0.95);
+    padding: 10px 8%; /* Kurangi padding agar lebih slim */
+    background: #ffffff;
     position: fixed;
-    top: 0; width: 100%;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    top: 0; 
+    width: 100%;
+    z-index: 2000; /* Pastikan selalu di atas elemen game */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 /* Container untuk Logo dan Tulisan */
@@ -41,9 +42,10 @@ nav {
 
 /* Pengaturan Gambar Logo di Navbar */
 .nav-logo-img {
-    height: 100px;        /* Sesuaikan tinggi logo agar tidak kebesaran di nav */
+    height: 60px; /* Ubah dari 100px ke 60px agar pas */
     width: auto;
-    border-radius: 5px;  /* Opsional: membuat sudut logo sedikit melengkung */
+    border-radius: 5px;
+    object-fit: contain;
 }
 
 /* Pengaturan Tulisan ECOFIN */
@@ -77,7 +79,7 @@ nav ul li a {
 .hero-overlay {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* Menggelapkan BG agar teks terbaca */
+    background: rgba(0, 0, 0, 0.4); 
 }
 
 .hero-content {
@@ -148,6 +150,46 @@ td { padding: 15px; border-bottom: 1px solid #eee; }
     50% { transform: translateY(-20px); }
 }
 
+.jenis-plastik-info {
+    margin-top: 30px;
+    padding: 20px;
+    background: #fdfdfd;
+    border-radius: 15px;
+    border: 1px solid var(--light-green);
+}
+
+.jenis-plastik-info h3 {
+    color: var(--primary-green);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.grid-plastik {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.kode-item {
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.kode-item strong {
+    display: block;
+    color: var(--nature-green);
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.kode-item p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #555;
+}
+
 footer {
     background: var(--primary-green);
     color: white;
@@ -159,15 +201,15 @@ footer {
    RESPONSIVE UNTUK HP (Mobile)
    ========================================= */
 @media screen and (max-width: 768px) {
-    /* 1. Atur Navbar agar tidak tumpang tindih */
+    /* 1. Navbar Mobile */
     nav {
-        flex-direction: column; /* Menu pindah ke bawah logo */
-        padding: 15px 2%;
+        flex-direction: column; 
+        padding: 10px 2%;
         height: auto;
     }
 
     .logo-wrapper {
-        margin-bottom: 10px; /* Jarak antara logo dan menu */
+        margin-bottom: 5px; 
     }
 
     .logo-text {
@@ -175,7 +217,16 @@ footer {
     }
 
     .nav-logo-img {
-        height: 35px; /* Kecilkan logo dikit di HP */
+        height: 45px; /* Kecilkan logo dikit di HP */
+    }
+
+    .game-full-page {
+        padding-top: 160px; 
+    }
+
+    .bin {
+        width: 140px; 
+        height: 160px;
     }
 
     nav ul {
@@ -218,4 +269,100 @@ footer {
         margin: -30px 15px 30px; /* Beri jarak kiri kanan agar tidak nempel layar */
         padding: 25px;
     }
+}
+
+
+/* =========================================
+   STYLE KHUSUS HALAMAN GAME
+   ========================================= */
+.game-full-page {
+    padding-top: 140px; 
+    text-align: center;
+    background-color: #f4f9f4;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#score-board {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-green);
+    margin: 20px 0;
+    padding: 10px 25px;
+    background: white;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.game-area {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin-top: 20px;
+}
+
+.trash-items {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.item {
+    background: white;
+    padding: 15px 25px;
+    border-radius: 12px;
+    cursor: grab;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 2px solid transparent;
+    transition: 0.3s;
+}
+
+.item:hover {
+    border-color: var(--nature-green);
+    transform: scale(1.05);
+}
+
+.bins {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.bin {
+    width: 200px;
+    height: 220px;
+    border: 3px dashed var(--nature-green);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.bin span {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--primary-green);
+}
+
+.bin p {
+    font-size: 0.85rem;
+    margin-top: 10px;
+    color: #666;
+    padding: 0 10px;
+}
+
+.bin.hover {
+    background: var(--light-green);
+    border-style: solid;
+    transform: scale(1.02);
 }
