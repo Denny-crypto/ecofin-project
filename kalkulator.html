@@ -20,6 +20,7 @@
             <li><a href="index.html">Beranda</a></li>
             <li><a href="kalkulator.html" style="color: var(--accent-blue);">Kalkulator</a></li>
             <li><a href="games.html">Mini Games</a></li>
+            <li><a href="about.html">About Us</a></li>
         </ul>
     </nav>
 
@@ -96,5 +97,13 @@
         setTheme(!isDark);
     });
 </script>
+
+const menu = document.querySelector('#mobile-menu');
+const menuLinks = document.querySelector('.nav-list');
+
+menu.addEventListener('click', function() {
+    menu.classList.toggle('is-active');
+    menuLinks.classList.toggle('active');
+});
 </body>
 </html>

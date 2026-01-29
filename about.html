@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - EcoFin</title>
+    <link rel="icon" type="image/png" href="Images/Logo.png">
+    <link rel="stylesheet" href="Style.Css">
+</head>
+<body>
+    <nav>
+        <div class="logo-wrapper">
+            <img src="Images/Logo.png" alt="Logo EcoFin" class="nav-logo-img">
+            <span class="logo-text">ECOFIN</span>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-list">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="kalkulator.html">Kalkulator</a></li>
+            <li><a href="games.html">Mini Games</a></li>
+            <li><a href="about.html" style="color: var(--accent-blue);">About Us</a></li>
+            <li><button id="dark-mode-toggle">🌙</button></li>
+        </ul>
+    </nav>
+
+    <section class="hero-about">
+        <div class="hero-content reveal">
+            <h1>Tentang EcoFin 🐬</h1>
+            <p>Sebuah inisiatif untuk menjaga denyut nadi Lingkungan dari ancaman plastik, demi masa depan kita semua.</p>
+        </div>
+        <div class="hero-fade-bottom"></div>
+    </section>
+
+    <div class="about-container reveal">
+        
+        <div class="visi-misi-section">
+            <div class="vm-card">
+                <h3>Visi Kami</h3>
+                <p>Menjadikan Lingkungan bebas dari sampah plastik masif, rumah yang aman bagi mahluk hidup bahkan manusia.</p>
+            </div>
+            <div class="vm-card">
+                <h3>Misi Kami</h3>
+                <ul>
+                    <li>Mengedukasi masyarakat tentang bahaya plastik PET & PS.</li>
+                    <li>Menyediakan platform interaktif untuk belajar memilah sampah.</li>
+                    <li>Mengolah limbah plastik menjadi aksesoris bernilai guna.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="team-section">
+            <h2>Founder & Creative Heart</h2>
+            <div class="team-grid single-card">
+                <div class="team-card">
+                    <div class="img-box">
+                        <img src="Images/jessy.jpeg" alt="Jessy">
+                    </div>
+                    <h3>Jessy</h3>
+                    <p>Creative Designer & Project Lead</p>
+                    <div class="team-socmed">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // 1. Dark Mode Logic
+        const toggleBtn = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            toggleBtn.innerText = '☀️';
+        }
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                toggleBtn.innerText = '☀️';
+            } else {
+                localStorage.setItem('theme', 'light');
+                toggleBtn.innerText = '🌙';
+            }
+        });
+
+        // 2. Mobile Menu Toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navList = document.querySelector('.nav-list');
+        mobileMenu.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+        // 3. Reveal Animation on Scroll
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+        reveals.forEach((reveal) => {
+            reveal.style.opacity = '0';
+            reveal.style.transform = 'translateY(20px)';
+            reveal.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(reveal);
+        });
+    </script>
+</body>
+</html>

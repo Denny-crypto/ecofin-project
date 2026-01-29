@@ -11,23 +11,29 @@
 </head>
 <body>
 
-   <nav>
+  <nav>
     <div class="logo-wrapper">
         <img src="Images/Logo.png" alt="Logo EcoFin" class="nav-logo-img">
         <span class="logo-text">ECOFIN</span>
     </div>
-    <ul <li>
-    <button id="dark-mode-toggle" style="background:none; border:none; cursor:pointer; font-size:1.2rem;">
-        🌙
-    </button>
-</li>
-        <li><a href="#home">Beranda</a></li>
-        <li><a href="#edukasi">Edukasi</a></li>
-        <li><a href="#purchase">Purchase</a></li>
-        <li><a href="games.html">Mini Games</a></li>
+
+    <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+
+    <ul class="nav-list">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="index.html#edukasi">Edukasi</a></li>
         <li><a href="kalkulator.html">Kalkulator</a></li>
+        <li><a href="game.html">Mini Games</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="index.html#purchase">Purchase</a></li>
+        <li><button id="dark-mode-toggle">🌙</button></li>
     </ul>
 </nav>
+
     <section id="home" class="hero">
         <div class="hero-overlay"></div>
         <div class="hero-content">
@@ -204,5 +210,13 @@
     // Jalankan sekali saat load pertama untuk elemen yang sudah terlihat
     reveal();
 </script>
+
+const menu = document.querySelector('#mobile-menu');
+const menuLinks = document.querySelector('.nav-list');
+
+menu.addEventListener('click', function() {
+    menu.classList.toggle('is-active');
+    menuLinks.classList.toggle('active');
+});
 </body>
 </html>
