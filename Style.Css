@@ -332,59 +332,87 @@ footer {
 }
 
 /* =========================================
-   RESPONSIVE UNTUK HP (Mobile)
+    RESPONSIVE UNTUK HP (FINAL CLEAN VERSION)
    ========================================= */
 @media screen and (max-width: 768px) {
-    /* 1. Navbar Mobile */
+    /* 1. Navbar Fix: Logo kiri, Menu kanan */
     nav {
-        flex-direction: column; 
-        padding: 10px 2%;
-        height: auto;
+        flex-direction: row !important; 
+        justify-content: space-between !important; 
+        padding: 10px 5%;
+        height: 70px;
+        align-items: center;
     }
 
-    @media screen and (max-width: 768px) {
-    .menu-toggle { display: block; }
+    .logo-wrapper {
+        margin-bottom: 0;
+        z-index: 2001;
+    }
 
+    .logo-text { font-size: 1.2rem; }
+    .nav-logo-img { height: 40px; }
+
+    /* 2. Menu Toggle (Hamburger) agar bisa diklik */
+    .menu-toggle {
+        display: block !important;
+        z-index: 2001;
+        padding: 15px; /* Area klik lebih luas */
+        cursor: pointer;
+    }
+
+    /* 3. Sidebar Menu Mobile */
     .nav-list {
         position: fixed;
-        right: -100%; /* Sembunyi di samping kanan */
-        top: 70px;
+        right: -100%; 
+        top: 0;
+        height: 100vh;
         flex-direction: column;
-        background: var(--card-bg);
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        box-shadow: 0 10px 10px rgba(0,0,0,0.1);
-        padding: 20px 0;
+        justify-content: center;
+        background: var(--nav-bg);
+        width: 75%; 
+        transition: 0.4s ease-in-out;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+        gap: 25px;
     }
 
     .nav-list.active {
-        right: 0; /* Muncul saat dipencet */
+        right: 0; /* Muncul saat class 'active' aktif */
     }
 
-    .nav-list li { margin: 15px 0; }
+    /* 4. Penyesuaian Konten Hero & Deskripsi */
+    .hero-content h1 { font-size: 1.8rem; }
+    #plastic-counter { font-size: 1.8rem; }
+    
+    .Deskripsi {
+        margin: -30px 15px 30px;
+        padding: 20px;
+    }
+
+    /* 5. Penyesuaian Kalkulator & Edukasi */
+    .calc-container {
+        padding: 120px 5% 40px;
+    }
+
+    .edu-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .edu-maskot {
+        position: static;
+        order: -1; /* Maskot di atas teks */
+        margin-bottom: 20px;
+    }
+
+    .floating-maskot { width: 160px; }
+
+    /* Fix Tabel agar tidak pecah di layar kecil */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
 }
-
-    .logo-wrapper {
-        margin-bottom: 5px; 
-    }
-
-    .logo-text {
-        font-size: 1.4rem; /* Kecilkan dikit tulisan di HP */
-    }
-
-    .nav-logo-img {
-        height: 45px; /* Kecilkan logo dikit di HP */
-    }
-
-    .game-full-page {
-        padding-top: 160px; 
-    }
-
-    .bin {
-        width: 140px; 
-        height: 160px;
-    }
 
     /* Tambahkan ini di dalam media query mobile */
 #plastic-counter {
@@ -448,7 +476,7 @@ footer {
         margin: -30px 15px 30px; /* Beri jarak kiri kanan agar tidak nempel layar */
         padding: 25px;
     }
-}
+
 
 @media screen and (max-width: 768px) {
     /* 1. Atur Kontainer Kalkulator */
