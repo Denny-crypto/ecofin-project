@@ -1,3 +1,6 @@
+/* =========================================
+   1. GLOBAL & VARIABEL WARNA
+   ========================================= */
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +9,6 @@
     scroll-behavior: smooth;
 }
 
-/* Variabel Warna Utama */
 :root {
     --bg-color: #f8faf8;
     --text-color: #333;
@@ -28,49 +30,90 @@ body.dark-mode {
     --light-green: #1b4332;
 }
 
-/* Terapkan variabel ke elemen global */
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
     transition: background 0.3s, color 0.3s;
 }
 
-nav { background: var(--nav-bg) !important; }
-.card, .bin, .item, .calc-form, table, .Deskripsi { 
+/* Terapkan variabel kartu ke elemen pendukung */
+.card, .bin, .item, .calc-form, table, .Deskripsi, .jenis-plastik-info, .kode-item, .vm-card, .team-card { 
     background-color: var(--card-bg) !important; 
     color: var(--text-color);
 }
 
-body {
-    background-color: #f8faf8;
-    color: #333;
-}
 
-
-/* Navbar */
+/* =========================================
+   2. NAVBAR & MENU DESKTOP
+   ========================================= */
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 8%; /* Kurangi padding agar lebih slim */
-    background: #ffffff;
+    padding: 10px 8%; 
+    background: var(--nav-bg) !important;
     position: fixed;
     top: 0; 
     width: 100%;
-    z-index: 2000; /* Pastikan selalu di atas elemen game */
+    z-index: 2000; 
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-/* --- Desktop Menu Style --- */
+.logo-wrapper {
+    display: flex;
+    align-items: center; 
+    gap: 12px;           
+}
+
+.nav-logo-img {
+    height: 60px; 
+    width: auto;
+    border-radius: 5px;
+    object-fit: contain;
+}
+
+.logo-text {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--primary-green);
+    letter-spacing: 2px;
+}
+
 .nav-list {
     display: flex;
     list-style: none;
     align-items: center;
-    gap: 20px;
+    gap: 25px; /* Jarak antar menu */
 }
 
+.nav-list a {
+    text-decoration: none;
+    color: var(--nature-green);
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.nav-list a:hover {
+    color: var(--primary-green);
+}
+
+/* Tombol Dark Mode */
+#dark-mode-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+    padding-top: 3px;
+    transition: 0.3s;
+}
+
+#dark-mode-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* Tombol Hamburger (Disembunyikan di Desktop) */
 .menu-toggle {
-    display: none; /* Sembunyi di desktop */
+    display: none; 
     cursor: pointer;
 }
 
@@ -83,38 +126,10 @@ nav {
     transition: 0.3s;
 }
 
-/* Container untuk Logo dan Tulisan */
-.logo-wrapper {
-    display: flex;
-    align-items: center; /* Membuat gambar dan tulisan sejajar vertikal */
-    gap: 12px;           /* Jarak antara gambar logo dengan tulisan ECOFIN */
-}
 
-/* Pengaturan Gambar Logo di Navbar */
-.nav-logo-img {
-    height: 60px; /* Ubah dari 100px ke 60px agar pas */
-    width: auto;
-    border-radius: 5px;
-    object-fit: contain;
-}
-
-/* Pengaturan Tulisan ECOFIN */
-.logo-text {
-    font-size: 1.8rem;
-    font-weight: 900;
-    color: var(--primary-green);
-    letter-spacing: 2px;
-}
-
-nav ul { display: flex; list-style: none; }
-nav ul li { margin-left: 30px; }
-nav ul li a {
-    text-decoration: none;
-    color: var(--nature-green);
-    font-weight: 600;
-}
-
-/* Hero Section dengan Efek Fade */
+/* =========================================
+   3. HERO SECTION & BERANDA
+   ========================================= */
 .hero {
     height: 100vh;
     position: relative;
@@ -141,6 +156,7 @@ nav ul li a {
 
 .hero-content h1 { font-size: 3.5rem; margin-bottom: 20px; }
 
+/* Counter Plastik Real-time */
 .counter-container {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(5px);
@@ -153,23 +169,18 @@ nav ul li a {
 #plastic-counter {
     font-size: 3rem;
     font-weight: 900;
-    color: #ffd700; /* Warna emas agar kontras dengan hijau */
+    color: #ffd700; 
     text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-    font-family: 'Courier New', Courier, monospace; /* Gaya digital */
+    font-family: 'Courier New', Courier, monospace; 
     margin: 10px 0;
 }
 
-.counter-container p {
-    font-size: 1rem;
-    color: white;
-}
+.counter-container p { font-size: 1rem; color: white; }
 
-/* Deskripsi Kotak */
 .Deskripsi {
     max-width: 900px;
-    margin: -50px auto 50px;
-    background: white;
-    padding: 40px;
+    margin: -50px auto 50px auto; 
+    padding: 30px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     position: relative;
@@ -177,354 +188,57 @@ nav ul li a {
     text-align: center;
 }
 
-/* Edukasi Layout */
+
+/* =========================================
+   4. EDUKASI & TABEL INFO PLASTIK
+   ========================================= */
 .info-section { padding: 100px 8%; }
 .info-section h2 { text-align: center; color: var(--primary-green); margin-bottom: 50px; }
 
-.edu-container {
-    display: flex;
-    gap: 50px;
-    align-items: flex-start;
-}
-
+.edu-container { display: flex; gap: 50px; align-items: flex-start; }
 .edu-text { flex: 2; }
-.edu-maskot { 
-    flex: 1; 
-    text-align: center; 
-    position: sticky; 
-    top: 150px; 
-}
+.edu-maskot { flex: 1; text-align: center; position: sticky; top: 150px; }
 
 .card {
-    background: white;
     padding: 25px;
     border-radius: 15px;
     margin-bottom: 20px;
     border-left: 5px solid var(--nature-green);
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
+.card.warning { border-left-color: #e63946; background: #fff5f5 !important; color: #333;}
 
-.card.warning { border-left-color: #e63946; background: #fff5f5; }
-
-/* Tabel */
-table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; border-radius: 10px; overflow: hidden; }
+table { width: 100%; border-collapse: collapse; margin-top: 20px; border-radius: 10px; overflow: hidden; }
 th { background: var(--nature-green); color: white; padding: 15px; text-align: left; }
 td { padding: 15px; border-bottom: 1px solid #eee; }
 
-/* Animasi Maskot */
-.floating-maskot {
-    width: 100%;
-    max-width: 300px;
-    animation: float 4s ease-in-out infinite;
-}
+.floating-maskot { width: 100%; max-width: 300px; animation: float 4s ease-in-out infinite; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-}
+.jenis-plastik-info { margin-top: 30px; padding: 20px; border-radius: 15px; border: 1px solid var(--light-green); }
+.jenis-plastik-info h3 { color: var(--primary-green); margin-bottom: 20px; text-align: center; }
 
-.jenis-plastik-info {
-    margin-top: 30px;
-    padding: 20px;
-    background: #fdfdfd;
-    border-radius: 15px;
-    border: 1px solid var(--light-green);
-}
+.grid-plastik { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.kode-item { padding: 15px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+.kode-item strong { display: block; color: var(--nature-green); margin-bottom: 8px; font-size: 1rem; }
+.kode-item p { font-size: 0.9rem; line-height: 1.5; color: var(--text-color); opacity: 0.8;}
 
-.jenis-plastik-info h3 {
-    color: var(--primary-green);
-    margin-bottom: 20px;
-    text-align: center;
-}
+/* Efek Scroll Animasi (Reveal) */
+.reveal { position: relative; transform: translateY(30px); opacity: 0; transition: 1s all ease; }
+.reveal.active { transform: translateY(0); opacity: 1; }
 
-.grid-plastik {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
+.stat-highlight { font-weight: 900; color: var(--nature-green); display: inline-block; transition: transform 0.3s ease; }
+.stat-highlight:hover { transform: scale(1.2) rotate(2deg); }
 
-.kode-item {
-    padding: 15px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
+footer { background: var(--primary-green); color: white; padding: 40px; text-align: center; }
 
-.kode-item strong {
-    display: block;
-    color: var(--nature-green);
-    margin-bottom: 8px;
-    font-size: 1rem;
-}
-
-.kode-item p {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: #555;
-}
-
-footer {
-    background: var(--primary-green);
-    color: white;
-    padding: 40px;
-    text-align: center;
-}
-
-/* Efek dasar untuk elemen yang akan di-scroll */
-.reveal {
-    position: relative;
-    transform: translateY(30px);
-    opacity: 0;
-    transition: 1s all ease;
-}
-
-/* Class yang akan ditambahkan lewat JavaScript saat scroll */
-.reveal.active {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-/* Animasi khusus untuk angka di tabel agar lebih menonjol */
-.stat-highlight {
-    font-weight: 900;
-    color: var(--nature-green);
-    display: inline-block;
-    transition: transform 0.3s ease;
-}
-
-.stat-highlight:hover {
-    transform: scale(1.2) rotate(2deg);
-}
-
-.calc-container {
-    padding: 140px 8% 60px;
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.calc-form {
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    text-align: left;
-}
-
-.calc-form input {
-    padding: 12px;
-    border: 1px solid var(--light-green);
-    border-radius: 8px;
-    font-size: 1rem;
-}
-
-.warning-box {
-    margin-top: 20px;
-    padding: 15px;
-    background: #fff5f5;
-    border-left: 5px solid #e63946;
-    color: #e63946;
-    font-weight: bold;
-}
 
 /* =========================================
-    RESPONSIVE UNTUK HP (FINAL CLEAN VERSION)
-   ========================================= */
-@media screen and (max-width: 768px) {
-    /* 1. Navbar Fix: Logo kiri, Menu kanan */
-    nav {
-        flex-direction: row !important; 
-        justify-content: space-between !important; 
-        padding: 10px 5%;
-        height: 70px;
-        align-items: center;
-    }
-
-    .logo-wrapper {
-        margin-bottom: 0;
-        z-index: 2001;
-    }
-
-    .logo-text { font-size: 1.2rem; }
-    .nav-logo-img { height: 40px; }
-
-    /* 2. Menu Toggle (Hamburger) agar bisa diklik */
-    .menu-toggle {
-        display: block !important;
-        z-index: 2001;
-        padding: 15px; /* Area klik lebih luas */
-        cursor: pointer;
-    }
-
-    /* 3. Sidebar Menu Mobile */
-    .nav-list {
-        position: fixed;
-        right: -100%; 
-        top: 0;
-        height: 100vh;
-        flex-direction: column;
-        justify-content: center;
-        background: var(--nav-bg);
-        width: 75%; 
-        transition: 0.4s ease-in-out;
-        box-shadow: -5px 0 15px rgba(0,0,0,0.2);
-        gap: 25px;
-    }
-
-    .nav-list.active {
-        right: 0; /* Muncul saat class 'active' aktif */
-    }
-
-    /* 4. Penyesuaian Konten Hero & Deskripsi */
-    .hero-content h1 { font-size: 1.8rem; }
-    #plastic-counter { font-size: 1.8rem; }
-    
-    .Deskripsi {
-        margin: -30px 15px 30px;
-        padding: 20px;
-    }
-
-    /* 5. Penyesuaian Kalkulator & Edukasi */
-    .calc-container {
-        padding: 120px 5% 40px;
-    }
-
-    .edu-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .edu-maskot {
-        position: static;
-        order: -1; /* Maskot di atas teks */
-        margin-bottom: 20px;
-    }
-
-    .floating-maskot { width: 160px; }
-
-    /* Fix Tabel agar tidak pecah di layar kecil */
-    table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
-}
-
-    /* Tambahkan ini di dalam media query mobile */
-#plastic-counter {
-    font-size: 2rem; /* Kecilkan dari 3rem agar pas di layar HP */
-    letter-spacing: 1px;
-}
-
-.counter-container {
-    padding: 15px;
-    margin: 20px 5%; /* Beri jarak aman di kiri-kanan */
-}
-
-/* Tambahkan ini di dalam media query mobile */
-#dark-mode-toggle {
-    margin-top: 10px; /* Beri jarak agar tidak menempel dengan menu Purchase */
-    font-size: 1.5rem; /* Perbesar sedikit agar mudah ditekan jempol */
-}
-
-/* Tambahkan ini di dalam media query mobile */
-.reveal {
-    transition: 0.6s all ease; /* Percepat durasi animasi di HP agar lebih responsif */
-}
-
-    nav ul {
-        width: 100%;
-        justify-content: center;
-        gap: 10px;
-    }
-
-    nav ul li {
-        margin: 0 8px; /* Rapatkan jarak antar menu */
-    }
-
-    nav ul li a {
-        font-size: 0.9rem;
-    }
-
-    /* 2. Atur Hero Section agar teks tidak terlalu besar */
-    .hero-content h1 {
-        font-size: 1.8rem;
-    }
-
-    /* 3. Atur Layout Edukasi (Tabel & Maskot) */
-    .edu-container {
-        flex-direction: column; /* Maskot pindah ke bawah tabel */
-        align-items: center;
-    }
-
-    .edu-maskot {
-        position: static; /* Hilangkan efek sticky di HP agar tidak aneh */
-        margin-top: 30px;
-        order: -1; /* Pindahkan maskot ke ATAS tabel khusus di HP */
-    }
-
-    .floating-maskot {
-        width: 180px; /* Kecilkan maskot di HP */
-    }
-
-    /* 4. Atur Kotak Deskripsi */
-    .Deskripsi {
-        margin: -30px 15px 30px; /* Beri jarak kiri kanan agar tidak nempel layar */
-        padding: 25px;
-    }
-
-
-@media screen and (max-width: 768px) {
-    /* 1. Atur Kontainer Kalkulator */
-    .calc-container {
-        padding: 160px 5% 40px; /* Jarak atas lebih besar agar tidak kena navbar tumpuk */
-    }
-
-    .calc-container h2 {
-        font-size: 1.5rem; /* Kecilkan judul agar tidak pecah dua baris */
-    }
-
-    /* 2. Atur Form Input */
-    .calc-form {
-        padding: 20px;
-        gap: 10px;
-    }
-
-    .calc-form label {
-        font-size: 0.85rem; /* Kecilkan teks label agar pas di layar sempit */
-    }
-
-    .calc-form input {
-        padding: 10px;
-        font-size: 1rem; /* Ukuran standar agar keyboard HP tidak otomatis zoom */
-    }
-
-    /* 3. Atur Hasil Analisis */
-    #result-area h3 {
-        font-size: 1.2rem;
-    }
-
-    #result-text {
-        font-size: 0.95rem;
-    }
-
-    .warning-box {
-        font-size: 0.85rem;
-        padding: 12px;
-    }
-}
-
-/* =========================================
-   STYLE KHUSUS HALAMAN GAME
+   5. MINI GAMES
    ========================================= */
 .game-full-page {
     padding-top: 140px; 
     text-align: center;
-    background-color: #f4f9f4;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -532,236 +246,135 @@ footer {
 }
 
 #score-board {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--primary-green);
-    margin: 20px 0;
-    padding: 10px 25px;
-    background: white;
-    border-radius: 50px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    font-size: 1.5rem; font-weight: bold; color: var(--primary-green);
+    margin: 20px 0; padding: 10px 25px; background: var(--card-bg);
+    border-radius: 50px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
-.game-area {
-    width: 100%;
-    max-width: 1000px;
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-    margin-top: 20px;
-}
-
-.trash-items {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
+.game-area { width: 100%; max-width: 1000px; display: flex; flex-direction: column; gap: 50px; margin-top: 20px; }
+.trash-items { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+.bins { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; }
 
 .item {
-    background: white;
-    padding: 15px 25px;
-    border-radius: 12px;
-    cursor: grab;
-    font-weight: bold;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    border: 2px solid transparent;
-    transition: 0.3s;
+    padding: 15px 25px; border-radius: 12px; cursor: grab; font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 2px solid transparent; transition: 0.3s;
 }
-
-.item:hover {
-    border-color: var(--nature-green);
-    transform: scale(1.05);
-}
-
-.bins {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
-}
+.item:hover { border-color: var(--nature-green); transform: scale(1.05); }
 
 .bin {
-    width: 200px;
-    height: 220px;
-    border: 3px dashed var(--nature-green);
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.5);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s;
+    width: 200px; height: 220px; border: 3px dashed var(--nature-green); border-radius: 20px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.3s;
 }
+.bin span { font-size: 1.4rem; font-weight: 900; color: var(--primary-green); }
+.bin p { font-size: 0.85rem; margin-top: 10px; padding: 0 10px; }
+.bin.hover { background: var(--light-green) !important; border-style: solid; transform: scale(1.02); }
 
-.bin span {
-    font-size: 1.4rem;
-    font-weight: 900;
-    color: var(--primary-green);
-}
-
-.bin p {
-    font-size: 0.85rem;
-    margin-top: 10px;
-    color: #666;
-    padding: 0 10px;
-}
-
-.bin.hover {
-    background: var(--light-green);
-    border-style: solid;
-    transform: scale(1.02);
-}
 
 /* =========================================
-   STYLE KHUSUS HALAMAN ABOUT US
+   6. KALKULATOR
    ========================================= */
+.calc-container { padding: 140px 8% 60px; max-width: 800px; margin: 0 auto; text-align: center; }
+.calc-form {
+    padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin-top: 30px; display: flex; flex-direction: column; gap: 15px; text-align: left;
+}
+.calc-form input { padding: 12px; border: 1px solid var(--light-green); border-radius: 8px; font-size: 1rem; background: transparent; color: var(--text-color);}
+.warning-box { margin-top: 20px; padding: 15px; background: #fff5f5; border-left: 5px solid #e63946; color: #e63946; font-weight: bold; }
 
-/* 1. Hero Section About (Gambar Latar & Teks) */
+
+/* =========================================
+   7. ABOUT US
+   ========================================= */
 .hero-about {
-    position: relative;
-    /* Tinggi hero about, sedikit lebih pendek dari homepage */
-    height: 60vh; 
-    min-height: 400px;
-    /* GANTI GAMBAR DI SINI JIKA PERLU */
+    position: relative; height: 60vh; min-height: 400px;
     background: url('Images/1.jpeg') center/cover no-repeat fixed; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-    /* Padding atas agar teks tidak tertutup navbar */
-    padding-top: 80px; 
+    display: flex; align-items: center; justify-content: center; text-align: center; color: white; padding-top: 80px; 
 }
+.hero-about h1 { font-size: 3.5rem; margin-bottom: 20px; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
+.hero-about p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; text-shadow: 1px 1px 4px rgba(0,0,0,0.7); }
 
-.hero-about h1 {
-    font-size: 3.5rem;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-}
-
-.hero-about p {
-    font-size: 1.2rem;
-    max-width: 700px;
-    margin: 0 auto;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
-}
-
-/* 2. Efek Fade Out di Bawah Hero */
 .hero-fade-bottom {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 150px; /* Tinggi area pudarnya */
-    /* Gradasi dari transparan ke warna background (var--bg-color) */
-    background: linear-gradient(to bottom, transparent, var(--bg-color));
-    pointer-events: none; /* Agar tidak menghalangi klik */
+    position: absolute; bottom: 0; left: 0; width: 100%; height: 150px;
+    background: linear-gradient(to bottom, transparent, var(--bg-color)); pointer-events: none; 
 }
 
-
-/* 3. Kontainer Konten Utama */
-.about-container {
-    padding: 60px 8%;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-/* Style untuk Visi Misi Card */
-.visi-misi-section {
-    display: flex;
-    gap: 30px;
-    margin-bottom: 80px;
-}
-
-.vm-card {
-    flex: 1;
-    background: var(--card-bg);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    border-top: 4px solid var(--nature-green);
-}
-
-.vm-card h3 {
-    color: var(--primary-green);
-    margin-bottom: 15px;
-}
-
+.about-container { padding: 60px 8%; max-width: 1000px; margin: 0 auto; }
+.visi-misi-section { display: flex; gap: 30px; margin-bottom: 80px; }
+.vm-card { padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-top: 4px solid var(--nature-green); }
+.vm-card h3 { color: var(--primary-green); margin-bottom: 15px; }
 .vm-card ul { padding-left: 20px; }
 .vm-card li { margin-bottom: 10px; }
 
-
-/* 4. Style untuk Team Section (Jessy) */
-.team-section h2 {
-    text-align: center;
-    margin-bottom: 40px;
-    color: var(--primary-green);
-}
-
-.team-grid.single-card {
-    display: flex;
-    justify-content: center; /* Kunci agar kartu Jessy di tengah */
-}
-
+.team-section h2 { text-align: center; margin-bottom: 40px; color: var(--primary-green); }
+.team-grid.single-card { display: flex; justify-content: center; }
 .team-card {
-    background: var(--card-bg);
-    padding: 40px;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    max-width: 350px; /* Batasi lebar kartu agar elegan */
-    border: 1px solid var(--light-green);
-    transition: 0.3s;
+    padding: 40px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+    max-width: 350px; border: 1px solid var(--light-green); transition: 0.3s;
 }
-
-.team-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--nature-green);
-}
-
+.team-card:hover { transform: translateY(-10px); border-color: var(--nature-green); }
 .img-box {
-    width: 180px;
-    height: 180px;
-    margin: 0 auto 25px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 5px solid var(--nature-green);
-    padding: 5px; /* Jarak antara foto dan border */
-    background: white;
+    width: 180px; height: 180px; margin: 0 auto 25px; border-radius: 50%; overflow: hidden;
+    border: 5px solid var(--nature-green); padding: 5px; background: white;
 }
+.img-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.team-card h3 { font-size: 1.8rem; margin-bottom: 10px; color: var(--primary-green); }
+.team-card p { font-weight: 500; margin-bottom: 20px; }
+.team-socmed a { text-decoration: none; color: var(--nature-green); font-weight: bold; margin: 0 5px; font-size: 0.9rem; }
 
-.img-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-}
 
-.team-card h3 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-    color: var(--primary-green);
-}
-
-.team-card p {
-    color: var(--text-color);
-    font-weight: 500;
-    margin-bottom: 20px;
-}
-
-.team-socmed a {
-    text-decoration: none;
-    color: var(--nature-green);
-    font-weight: bold;
-    margin: 0 5px;
-    font-size: 0.9rem;
-}
-
-/* 5. Responsive Mobile untuk About Us */
+/* =========================================
+   8. RESPONSIVE MOBILE (GABUNGAN FINAL)
+   ========================================= */
 @media screen and (max-width: 768px) {
+    /* Navbar & Hamburger */
+    nav { flex-direction: row !important; justify-content: space-between !important; padding: 10px 5%; height: 70px; }
+    .logo-wrapper { margin-bottom: 0; z-index: 2001; }
+    .logo-text { font-size: 1.2rem; }
+    .nav-logo-img { height: 40px; }
+    
+    .menu-toggle { display: block !important; z-index: 2001; padding: 15px; cursor: pointer; }
+    
+    .nav-list {
+        position: fixed; right: -100%; top: 0; height: 100vh; flex-direction: column;
+        justify-content: center; background: var(--nav-bg); width: 75%; transition: 0.4s ease-in-out;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.2); gap: 20px;
+    }
+    .nav-list.active { right: 0; }
+    .nav-list a { font-size: 1.1rem; }
+    #dark-mode-toggle { margin-top: 10px; font-size: 1.8rem; }
+
+    /* Beranda */
+    .hero-content h1 { font-size: 1.8rem; }
+    #plastic-counter { font-size: 2rem; letter-spacing: 1px; }
+    .counter-container { padding: 15px; margin: 20px 5%; }
+    .Deskripsi { margin: -30px 15px 30px; padding: 25px; }
+
+    /* Edukasi */
+    .edu-container { flex-direction: column; align-items: center; }
+    .edu-maskot { position: static; margin-top: 30px; order: -1; margin-bottom: 20px;}
+    .floating-maskot { width: 160px; }
+    table { display: block; overflow-x: auto; white-space: nowrap; }
+
+    /* Kalkulator */
+    .calc-container { padding: 160px 5% 40px; }
+    .calc-container h2 { font-size: 1.5rem; }
+    .calc-form { padding: 20px; gap: 10px; }
+    .calc-form label { font-size: 0.85rem; }
+    .calc-form input { padding: 10px; font-size: 1rem; }
+    #result-area h3 { font-size: 1.2rem; }
+    #result-text { font-size: 0.95rem; }
+    .warning-box { font-size: 0.85rem; padding: 12px; }
+
+    /* Game */
+    .game-full-page { padding-top: 160px; }
+    .bin { width: 140px; height: 160px; }
+
+    /* About Us */
     .hero-about h1 { font-size: 2.5rem; }
     .visi-misi-section { flex-direction: column; }
     .team-card { padding: 30px 20px; }
     .img-box { width: 150px; height: 150px; }
+
+    /* Animasi Scroll */
+    .reveal { transition: 0.6s all ease; }
 }

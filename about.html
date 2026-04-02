@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="Style.Css">
 </head>
 <body>
+    
     <nav>
         <div class="logo-wrapper">
             <img src="Images/Logo.png" alt="Logo EcoFin" class="nav-logo-img">
@@ -20,6 +21,7 @@
         </div>
         <ul class="nav-list">
             <li><a href="index.html">Beranda</a></li>
+            <li><a href="index.html#edukasi">Edukasi</a></li>
             <li><a href="kalkulator.html">Kalkulator</a></li>
             <li><a href="games.html">Mini Games</a></li>
             <li><a href="about.html" style="color: var(--accent-blue);">About Us</a></li>
@@ -36,11 +38,10 @@
     </section>
 
     <div class="about-container reveal">
-        
         <div class="visi-misi-section">
             <div class="vm-card">
                 <h3>Visi Kami</h3>
-                <p>Menjadikan Lingkungan bebas dari sampah plastik masif, rumah yang aman bagi mahluk hidup bahkan manusia.</p>
+                <p>Menjadikan Lingkungan bebas dari sampah plastik masif, rumah yang aman bagi makhluk hidup bahkan manusia.</p>
             </div>
             <div class="vm-card">
                 <h3>Misi Kami</h3>
@@ -61,16 +62,13 @@
                     </div>
                     <h3>Jessy</h3>
                     <p>Creative Designer & Project Lead</p>
-                    <div class="team-socmed">
-                    </div>
                 </div>
             </div>
         </div>
-
     </div>
 
     <script>
-        // 1. Dark Mode Logic
+        // 1. Dark Mode & Hamburger Menu
         const toggleBtn = document.getElementById('dark-mode-toggle');
         const body = document.body;
         if (localStorage.getItem('theme') === 'dark') {
@@ -88,29 +86,27 @@
             }
         });
 
-        // 2. Mobile Menu Toggle
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navList = document.querySelector('.nav-list');
-        mobileMenu.addEventListener('click', () => {
-            navList.classList.toggle('active');
+        const menu = document.querySelector('#mobile-menu');
+        const menuLinks = document.querySelector('.nav-list');
+        menu.addEventListener('click', function() {
+            menu.classList.toggle('is-active');
+            menuLinks.classList.toggle('active');
         });
 
-        // 3. Reveal Animation on Scroll
-        const reveals = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+        // 2. Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
                 }
-            });
-        });
-        reveals.forEach((reveal) => {
-            reveal.style.opacity = '0';
-            reveal.style.transform = 'translateY(20px)';
-            reveal.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(reveal);
-        });
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
     </script>
 </body>
 </html>

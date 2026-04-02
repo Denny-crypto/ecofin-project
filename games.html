@@ -4,132 +4,131 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoFin Game - Bantu Fin Pilah Sampah</title>
+    <link rel="icon" type="image/png" href="Images/Logo.png">
     <link rel="stylesheet" href="Style.Css">
 </head>
 <body>
+    
     <nav>
-    <div class="logo-wrapper">
-        <img src="Images/Logo.png" alt="Logo EcoFin" class="nav-logo-img">
-        <span class="logo-text">ECOFIN</span>
-    </div>
-    <ul <li>
-    <button id="dark-mode-toggle" style="background:none; border:none; cursor:pointer; font-size:1.2rem;">
-        🌙
-    </button>
-</li>
-        <li><a href="index.html">Beranda</a></li>
-        <li><a href="games.html" style="color: #3a7bd5;">Mini Games</a></li>
-        <li><a href="kalkulator.html">Kalkulator</a></li>
-        <li><a href="about.html">About Us</a></li>
-    </ul>
-</nav>
+        <div class="logo-wrapper">
+            <img src="Images/Logo.png" alt="Logo EcoFin" class="nav-logo-img">
+            <span class="logo-text">ECOFIN</span>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-list">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="index.html#edukasi">Edukasi</a></li>
+            <li><a href="kalkulator.html">Kalkulator</a></li>
+            <li><a href="games.html" style="color: var(--accent-blue);">Mini Games</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><button id="dark-mode-toggle">🌙</button></li>
+        </ul>
+    </nav>
 
     <div class="game-full-page">
-    <h2>Bantu Fin Pilah Sampah!</h2>
-    <br>
-    <p>Berdasarkan data ECOFIN, plastik butuh ratusan tahun untuk terurai. Yuk pilah!</p>
-    
-    <div id="score-board">Skor: <span id="score">0</span></div>
+        <h2>Bantu Fin Pilah Sampah!</h2>
+        <br>
+        <p>Berdasarkan data ECOFIN, plastik butuh ratusan tahun untuk terurai. Yuk pilah!</p>
+        
+        <div id="score-board">Skor: <span id="score">0</span></div>
 
-    <div class="game-area">
-        <div class="trash-items">
-            <div class="item" draggable="true" id="botol" data-type="PET">🧴 Botol Minum Kemasan</div>
-            <div class="item" draggable="true" id="kresek" data-type="LDPE">🛍️ Kantong Kresek</div>
-            <div class="item" draggable="true" id="styrofoam" data-type="PS">🍱 Wadah Styrofoam</div>
-            <div class="item" draggable="true" id="sikat" data-type="PET">🪥 Sikat Gigi</div>
-        </div>
+        <div class="game-area">
+            <div class="trash-items">
+                <div class="item" draggable="true" id="botol" data-type="PET">🧴 Botol Minum Kemasan</div>
+                <div class="item" draggable="true" id="kresek" data-type="LDPE">🛍️ Kantong Kresek</div>
+                <div class="item" draggable="true" id="styrofoam" data-type="PS">🍱 Wadah Styrofoam</div>
+                <div class="item" draggable="true" id="sikat" data-type="PET">🪥 Sikat Gigi</div>
+            </div>
 
-        <div class="bins">
-            <div class="bin" id="PET">
-                <span>PET</span>
-                <p>(400-450 Thn)</p>
-            </div>
-            <div class="bin" id="LDPE">
-                <span>LDPE</span>
-                <p>(20 Thn)</p>
-            </div>
-            <div class="bin" id="PS">
-                <span>PS</span>
-                <p>(∞)</p>
+            <div class="bins">
+                <div class="bin" id="PET">
+                    <span>PET</span>
+                    <p>(400-450 Thn)</p>
+                </div>
+                <div class="bin" id="LDPE">
+                    <span>LDPE</span>
+                    <p>(20 Thn)</p>
+                </div>
+                <div class="bin" id="PS">
+                    <span>PS</span>
+                    <p>(∞)</p>
+                </div>
             </div>
         </div>
+        <div id="game-message" style="margin-top: 20px; font-weight: bold; font-size: 1.2rem;"></div>
+        <button onclick="location.reload()" id="btn-reset" style="display:none; margin: 20px auto; padding: 10px 20px; background: var(--primary-green); color: white; border: none; border-radius: 10px; cursor: pointer;">Main Lagi</button>
     </div>
-    <div id="game-message"></div>
-    <button onclick="location.reload()" id="btn-reset" style="display:none;">Main Lagi</button>
-</div>
 
-<script>
-    let score = 0;
-    const items = document.querySelectorAll('.item');
-    const bins = document.querySelectorAll('.bin');
-    const message = document.getElementById('game-message');
-    const scoreDisplay = document.getElementById('score');
+    <script>
+        // 1. Logika Game
+        let score = 0;
+        const items = document.querySelectorAll('.item');
+        const bins = document.querySelectorAll('.bin');
+        const message = document.getElementById('game-message');
+        const scoreDisplay = document.getElementById('score');
 
-    items.forEach(item => {
-        item.addEventListener('dragstart', (e) => {
-            e.dataTransfer.setData('text', e.target.id);
+        items.forEach(item => {
+            item.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('text', e.target.id);
+            });
         });
-    });
 
-    bins.forEach(bin => {
-        bin.addEventListener('dragover', (e) => e.preventDefault());
-        bin.addEventListener('dragenter', (e) => bin.classList.add('hover'));
-        bin.addEventListener('dragleave', () => bin.classList.remove('hover'));
+        bins.forEach(bin => {
+            bin.addEventListener('dragover', (e) => e.preventDefault());
+            bin.addEventListener('dragenter', (e) => bin.classList.add('hover'));
+            bin.addEventListener('dragleave', () => bin.classList.remove('hover'));
 
-        bin.addEventListener('drop', (e) => {
-            bin.classList.remove('hover');
-            const itemId = e.dataTransfer.getData('text');
-            const item = document.getElementById(itemId);
-            
-            if (item.getAttribute('data-type') === bin.id) {
-                score += 10;
-                scoreDisplay.innerText = score;
-                item.style.visibility = "hidden";
-                message.innerHTML = "Tepat! Kamu membantu menjaga Sungai Mahakam! 🐬";
-                message.style.color = "#2d6a4f";
+            bin.addEventListener('drop', (e) => {
+                bin.classList.remove('hover');
+                const itemId = e.dataTransfer.getData('text');
+                const item = document.getElementById(itemId);
                 
-                // Cek jika semua sampah sudah dipilah
-                if (score === 40) {
-                    message.innerHTML = "Luar Biasa! Fin sangat berterima kasih! 🎉";
-                    document.getElementById('btn-reset').style.display = "block";
+                if (item.getAttribute('data-type') === bin.id) {
+                    score += 10;
+                    scoreDisplay.innerText = score;
+                    item.style.visibility = "hidden";
+                    message.innerHTML = "Tepat! Kamu membantu menjaga Sungai Mahakam! 🐬";
+                    message.style.color = "var(--nature-green)";
+                    
+                    if (score === 40) {
+                        message.innerHTML = "Luar Biasa! Fin sangat berterima kasih! 🎉";
+                        document.getElementById('btn-reset').style.display = "block";
+                    }
+                } else {
+                    message.innerHTML = "Ups! Jenis plastik itu tidak cocok di sini. ❌";
+                    message.style.color = "#e63946";
                 }
+            });
+        });
+
+        // 2. Dark Mode & Hamburger Menu
+        const toggleBtn = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            toggleBtn.innerText = '☀️';
+        }
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                toggleBtn.innerText = '☀️';
             } else {
-                message.innerHTML = "Ups! Jenis plastik itu tidak cocok di sini. ❌";
-                message.style.color = "#e63946";
+                localStorage.setItem('theme', 'light');
+                toggleBtn.innerText = '🌙';
             }
         });
-    });
-</script>
 
-<script>
-    const toggleBtn = document.getElementById('dark-mode-toggle');
-    const body = document.body;
-
-    // Cek apakah user sebelumnya sudah pilih dark mode
-    if (localStorage.getItem('theme') === 'dark') {
-        body.classList.add('dark-mode');
-        toggleBtn.innerText = '☀️';
-    }
-
-    toggleBtn.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        
-        if (body.classList.contains('dark-mode')) {
-            localStorage.setItem('theme', 'dark');
-            toggleBtn.innerText = '☀️'; // Ganti ikon jadi matahari
-        } else {
-            localStorage.setItem('theme', 'light');
-            toggleBtn.innerText = '🌙'; // Ganti ikon jadi bulan
-        }
-    });
-</script>
-
-const menu = document.querySelector('#mobile-menu');
-const menuLinks = document.querySelector('.nav-list');
-
-menu.addEventListener('click', function() {
-    menu.classList.toggle('is-active');
-    menuLinks.classList.toggle('active');
-});
+        const menu = document.querySelector('#mobile-menu');
+        const menuLinks = document.querySelector('.nav-list');
+        menu.addEventListener('click', function() {
+            menu.classList.toggle('is-active');
+            menuLinks.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>

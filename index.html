@@ -4,35 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoFin - Solusi Cerdas Kelola Plastik</title>
-    
     <link rel="icon" type="image/png" href="Images/Logo.png">
-    
     <link rel="stylesheet" href="Style.Css">
 </head>
 <body>
 
-  <nav>
-    <div class="logo-wrapper">
-        <img src="Images/Logo.png" alt="Logo EcoFin" class="nav-logo-img">
-        <span class="logo-text">ECOFIN</span>
-    </div>
-
-    <div class="menu-toggle" id="mobile-menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </div>
-
-    <ul class="nav-list">
-        <li><a href="index.html">Beranda</a></li>
-        <li><a href="index.html#edukasi">Edukasi</a></li>
-        <li><a href="kalkulator.html">Kalkulator</a></li>
-        <li><a href="game.html">Mini Games</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="index.html#purchase">Purchase</a></li>
-        <li><button id="dark-mode-toggle">🌙</button></li>
-    </ul>
-</nav>
+    <nav>
+        <div class="logo-wrapper">
+            <img src="Images/Logo.png" alt="Logo EcoFin" class="nav-logo-img">
+            <span class="logo-text">ECOFIN</span>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-list">
+            <li><a href="index.html" style="color: var(--accent-blue);">Beranda</a></li>
+            <li><a href="index.html#edukasi">Edukasi</a></li>
+            <li><a href="kalkulator.html">Kalkulator</a></li>
+            <li><a href="games.html">Mini Games</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><button id="dark-mode-toggle">🌙</button></li>
+        </ul>
+    </nav>
 
     <section id="home" class="hero">
         <div class="hero-overlay"></div>
@@ -40,34 +35,31 @@
             <h1>Satu Langkah Kecil untuk Bumi yang Lebih Hijau</h1>
             <p>"Sampahmu adalah tanggung jawabmu. Mari belajar mengelola agar tidak menjadi bencana."</p>
             <div class="counter-container">
-    <p>Sejak kamu membuka halaman ini, sudah ada sekitar:</p>
-    <div id="plastic-counter">0</div>
-    <p>Kg sampah plastik yang dihasilkan di seluruh dunia.</p>
-</div>
+                <p>Sejak kamu membuka halaman ini, sudah ada sekitar:</p>
+                <div id="plastic-counter">0</div>
+                <p>Kg sampah plastik yang dihasilkan di seluruh dunia.</p>
+            </div>
         </div>
     </section>
 
-    <div class="Deskripsi">
+    <div class="Deskripsi reveal">
         <p class="highlight">Halo! Aku <span>Fin</span>, si Pesut Mahakam.</p>
         <p>Tahukah kamu? Aku dan keluargaku di Sungai Mahakam kini terancam punah karena limbah plastik. Yuk, bantu aku menjaga rumah kita tetap bersih!</p>
     </div>
 
     <section id="edukasi" class="info-section">
         <h2>Edukasi Bahaya Sampah Plastik</h2>
-        
         <div class="edu-container">
             <div class="edu-text">
-                <div class="card">
+                <div class="card reveal">
                     <h3>Kenapa Hanya Plastik?</h3>
                     <p>Plastik adalah sampah masif. Ratusan ton berputar setiap jam di dunia. Kami fokus pada plastik minuman (botol & gelas) karena intensitas penggunaannya yang sangat tinggi.</p>
                 </div>
-
-                <div class="card warning">
+                <div class="card warning reveal">
                     <h3>Bahaya Mikroplastik</h3>
                     <p>Plastik tidak hilang, mereka hancur menjadi partikel kecil (mikroplastik) yang merusak ekosistem laut dan masuk ke rantai makanan manusia.</p>
                 </div>
-
-                <div class="tabel-sampah">
+                <div class="tabel-sampah reveal">
                     <table>
                         <thead>
                             <tr>
@@ -76,147 +68,89 @@
                             </tr>
                         </thead>
                         <tbody>
-                           <tr class="reveal">
-                            <td>Botol Minuman (PET)</td><td>
-                            <span class="stat-highlight">450</span> Tahun</td></tr>
+                            <tr><td>Botol Minuman (PET)</td><td><span class="stat-highlight">450</span> Tahun</td></tr>
                             <tr><td>Sedotan Plastik (PET)</td><td>200 Tahun</td></tr>
                             <tr><td>Kantong Kresek (LDPE)</td><td>10 - 20 Tahun</td></tr>
                             <tr><td>Gelas Plastik (PET)</td><td>50 Tahun</td></tr>
-                            <tr class="reveal"><td>Wadah Styrofoam (PS)</td>
-                            <td><span class="stat-highlight">Tidak Terbatas</span></td></tr>
+                            <tr><td>Wadah Styrofoam (PS)</td><td><span class="stat-highlight">Tidak Terbatas</span></td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-
-            <div class="edu-maskot">
+            <div class="edu-maskot reveal">
                 <img src="Images/4.jpeg" alt="Maskot EcoFin" class="floating-maskot">
                 <p>Mengenal Jenis Plastik: <br>PET, HDPE, PVC, LDPE, PP, PS.</p>
             </div>
         </div>
     </section>
 
-    
-<div class="jenis-plastik-info">
-    <h3>Mengenal Jenis Kode Plastik</h3>
-    <div class="grid-plastik">
-        <div class="kode-item">
-            <strong>1. PET (Polyethylene Terephthalate)</strong>
-            <p>Umumnya digunakan untuk botol minum sekali pakai. Sulit terurai (450 tahun) dan disarankan hanya sekali pakai.</p>
-        </div>
-        <div class="kode-item">
-            <strong>2. HDPE (High-Density Polyethylene)</strong>
-            <p>Lebih kuat dan tahan panas, biasanya digunakan untuk botol susu atau detergen. Lebih mudah didaur ulang.</p>
-        </div>
-        <div class="kode-item">
-            <strong>3. PVC (Polyvinyl Chloride)</strong>
-            <p>Plastik yang sulit didaur ulang dan mengandung zat kimia berbahaya, sering ditemukan pada pipa atau kabel.</p>
-        </div>
-        <div class="kode-item">
-            <strong>4. LDPE (Low-Density Polyethylene)</strong>
-            <p>Lentur dan kuat, digunakan untuk kantong kresek. Butuh 10-20 tahun untuk terurai.</p>
-        </div>
-        <div class="kode-item">
-            <strong>5. PP (Polypropylene)</strong>
-            <p>Jenis plastik terbaik untuk tempat makanan/minuman karena tahan panas. Digunakan pada sedotan (200 tahun urai).</p>
-        </div>
-        <div class="kode-item">
-            <strong>6. PS (Polystyrene)</strong>
-            <p>Digunakan untuk Styrofoam. Sangat berbahaya karena tidak bisa terurai secara alami selamanya.</p>
+    <div class="jenis-plastik-info reveal">
+        <h3>Mengenal Jenis Kode Plastik</h3>
+        <div class="grid-plastik">
+            <div class="kode-item"><strong>1. PET (Polyethylene Terephthalate)</strong><p>Umumnya digunakan untuk botol minum sekali pakai. Sulit terurai (450 tahun).</p></div>
+            <div class="kode-item"><strong>2. HDPE (High-Density Polyethylene)</strong><p>Lebih kuat dan tahan panas, biasanya digunakan untuk botol susu atau detergen.</p></div>
+            <div class="kode-item"><strong>3. PVC (Polyvinyl Chloride)</strong><p>Plastik yang sulit didaur ulang dan mengandung zat kimia berbahaya.</p></div>
+            <div class="kode-item"><strong>4. LDPE (Low-Density Polyethylene)</strong><p>Lentur dan kuat, digunakan untuk kantong kresek. Butuh 10-20 tahun untuk terurai.</p></div>
+            <div class="kode-item"><strong>5. PP (Polypropylene)</strong><p>Jenis plastik terbaik untuk tempat makanan/minuman karena tahan panas.</p></div>
+            <div class="kode-item"><strong>6. PS (Polystyrene)</strong><p>Digunakan untuk Styrofoam. Sangat berbahaya karena tidak bisa terurai secara alami selamanya.</p></div>
         </div>
     </div>
-</div>
-
 
     <footer>
         <p>&copy; 2026 ECOFIN - Project Akhir Jessy</p>
     </footer>
 
-
-
     <script>
-        window.addEventListener('scroll', function() {
-            const scrollPos = window.scrollY;
-            const heroOverlay = document.querySelector('.hero-overlay');
-            const heroContent = document.querySelector('.hero-content');
-            
-            // Mengatur opacity berdasarkan scroll
-            let opacityValue = 1 - (scrollPos / 600);
-            if (opacityValue < 0) opacityValue = 0;
-            
-            heroOverlay.style.opacity = opacityValue;
-            heroContent.style.opacity = opacityValue;
-        });
-    </script>
+        // 1. Counter Sampah
+        let plasticWeight = 0;
+        const weightPerSecond = 10000; 
+        const updateInterval = 100;
+        const counterElement = document.getElementById('plastic-counter');
+        setInterval(() => {
+            plasticWeight += weightPerSecond / (1000 / updateInterval);
+            counterElement.innerText = Math.floor(plasticWeight).toLocaleString('id-ID');
+        }, updateInterval);
 
-
-
-    <script>
-    let plasticWeight = 0;
-    // Asumsi rata-rata sampah plastik dunia per detik adalah 10.000 kg
-    const weightPerSecond = 10000; 
-    const updateInterval = 100; // Update setiap 0.1 detik agar halus
-
-    const counterElement = document.getElementById('plastic-counter');
-
-    setInterval(() => {
-        plasticWeight += weightPerSecond / (1000 / updateInterval);
-        // Menampilkan angka dengan format ribuan
-        counterElement.innerText = Math.floor(plasticWeight).toLocaleString('id-ID');
-    }, updateInterval);
-</script>
-
-
-<script>
-    const toggleBtn = document.getElementById('dark-mode-toggle');
-    const body = document.body;
-
-    // Cek apakah user sebelumnya sudah pilih dark mode
-    if (localStorage.getItem('theme') === 'dark') {
-        body.classList.add('dark-mode');
-        toggleBtn.innerText = '☀️';
-    }
-
-    toggleBtn.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        
-        if (body.classList.contains('dark-mode')) {
-            localStorage.setItem('theme', 'dark');
-            toggleBtn.innerText = '☀️'; // Ganti ikon jadi matahari
-        } else {
-            localStorage.setItem('theme', 'light');
-            toggleBtn.innerText = '🌙'; // Ganti ikon jadi bulan
+        // 2. Dark Mode Toggle
+        const toggleBtn = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            toggleBtn.innerText = '☀️';
         }
-    });
-</script>
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                toggleBtn.innerText = '☀️';
+            } else {
+                localStorage.setItem('theme', 'light');
+                toggleBtn.innerText = '🌙';
+            }
+        });
 
-<script>
-    function reveal() {
-        var reveals = document.querySelectorAll(".reveal");
+        // 3. Hamburger Menu
+        const menu = document.querySelector('#mobile-menu');
+        const menuLinks = document.querySelector('.nav-list');
+        menu.addEventListener('click', function() {
+            menu.classList.toggle('is-active');
+            menuLinks.classList.toggle('active');
+        });
 
-        for (var i = 0; i < reveals.length; i++) {
-            var windowHeight = window.innerHeight;
-            var elementTop = reveals[i].getBoundingClientRect().top;
-            var elementVisible = 150;
-
-            if (elementTop < windowHeight - elementVisible) {
-                reveals[i].classList.add("active");
+        // 4. Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
             }
         }
-    }
-
-    window.addEventListener("scroll", reveal);
-
-    // Jalankan sekali saat load pertama untuk elemen yang sudah terlihat
-    reveal();
-</script>
-
-const menu = document.querySelector('#mobile-menu');
-const menuLinks = document.querySelector('.nav-list');
-
-menu.addEventListener('click', function() {
-    menu.classList.toggle('is-active');
-    menuLinks.classList.toggle('active');
-});
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script> 
 </body>
 </html>
