@@ -378,3 +378,22 @@ footer { background: var(--primary-green); color: white; padding: 40px; text-ali
     /* Animasi Scroll */
     .reveal { transition: 0.6s all ease; }
 }
+
+/* Tambahan Khusus agar Menu HP & AI Scan Rapi */
+@media screen and (max-width: 768px) {
+    .menu-toggle { display: block !important; z-index: 2001; }
+    .nav-list {
+        position: fixed; right: -100%; top: 0; height: 100vh; 
+        flex-direction: column; justify-content: center; 
+        background: var(--nav-bg); width: 70%; 
+        transition: 0.4s ease-in-out; box-shadow: -5px 0 15px rgba(0,0,0,0.2); 
+        gap: 30px;
+    }
+    .nav-list.active { right: 0; }
+}
+
+#webcam-container canvas {
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: 15px;
+}

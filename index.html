@@ -25,6 +25,7 @@
             <li><a href="kalkulator.html">Kalkulator</a></li>
             <li><a href="games.html">Mini Games</a></li>
             <li><a href="about.html">About Us</a></li>
+            <li><a href="scan.html">AI Scan</a></li>
             <li><button id="dark-mode-toggle">🌙</button></li>
         </ul>
     </nav>
@@ -101,56 +102,60 @@
     </footer>
 
     <script>
-        // 1. Counter Sampah
-        let plasticWeight = 0;
-        const weightPerSecond = 10000; 
-        const updateInterval = 100;
-        const counterElement = document.getElementById('plastic-counter');
-        setInterval(() => {
-            plasticWeight += weightPerSecond / (1000 / updateInterval);
-            counterElement.innerText = Math.floor(plasticWeight).toLocaleString('id-ID');
-        }, updateInterval);
+        // 1. Logika Hamburger Menu (PENTING BUAT DEMO HP)
+const menu = document.querySelector('#mobile-menu');
+const menuLinks = document.querySelector('.nav-list');
 
-        // 2. Dark Mode Toggle
-        const toggleBtn = document.getElementById('dark-mode-toggle');
-        const body = document.body;
-        if (localStorage.getItem('theme') === 'dark') {
-            body.classList.add('dark-mode');
+if (menu) {
+    menu.addEventListener('click', function() {
+        menu.classList.toggle('is-active'); // Animasi tombol jadi 'X'
+        menuLinks.classList.toggle('active'); // Munculin menu dari kanan
+    });
+}
+
+// 2. Logika Dark Mode
+const toggleBtn = document.getElementById('dark-mode-toggle');
+const body = document.body;
+
+if (localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark-mode');
+    if (toggleBtn) toggleBtn.innerText = '☀️';
+}
+
+if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        if (body.classList.contains('dark-mode')) {
+            localStorage.setItem('theme', 'dark');
             toggleBtn.innerText = '☀️';
+        } else {
+            localStorage.setItem('theme', 'light');
+            toggleBtn.innerText = '🌙';
         }
-        toggleBtn.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('theme', 'dark');
-                toggleBtn.innerText = '☀️';
-            } else {
-                localStorage.setItem('theme', 'light');
-                toggleBtn.innerText = '🌙';
-            }
-        });
+    });
+}
 
-        // 3. Hamburger Menu
-        const menu = document.querySelector('#mobile-menu');
-        const menuLinks = document.querySelector('.nav-list');
-        menu.addEventListener('click', function() {
-            menu.classList.toggle('is-active');
-            menuLinks.classList.toggle('active');
-        });
+// 3. Counter Sampah Real-time
+let plasticWeight = 0;
+const counterElement = document.getElementById('plastic-counter');
+if (counterElement) {
+    setInterval(() => {
+        plasticWeight += 1000; // Menambah 1000kg setiap 0.1 detik
+        counterElement.innerText = Math.floor(plasticWeight).toLocaleString('id-ID');
+    }, 100);
+}
 
-        // 4. Reveal Animation
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
+// 4. Reveal Animation on Scroll
+function reveal() {
+    var reveals = document.querySelectorAll(".reveal");
+    reveals.forEach(r => {
+        if (r.getBoundingClientRect().top < window.innerHeight - 150) {
+            r.classList.add("active");
         }
-        window.addEventListener("scroll", reveal);
-        reveal();
+    });
+}
+window.addEventListener("scroll", reveal);
+reveal();
     </script> 
 </body>
 </html>
