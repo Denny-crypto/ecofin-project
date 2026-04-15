@@ -55,19 +55,22 @@
                 const modelURL = URL + "model.json";
                 const metadataURL = URL + "metadata.json";
 
-                // Load model
                 model = await tmImage.load(modelURL, metadataURL);
                 maxPredictions = model.getTotalClasses();
 
-                // Setup webcam (Kamera Belakang)
+                // Konfigurasi Kamera Belakang & iOS
                 const flip = false; 
                 webcam = new tmImage.Webcam(320, 240, flip); 
                 await webcam.setup({ facingMode: "environment" }); 
+
+                // Trik Khusus agar iPhone tidak ngebug
+                const video = webcam.webcam;
+                video.setAttribute('playsinline', '');
+                video.muted = true;
+
                 await webcam.play();
-                
                 window.requestAnimationFrame(loop);
 
-                // Masukkan ke UI
                 const container = document.getElementById("webcam-container");
                 container.innerHTML = ""; 
                 container.appendChild(webcam.canvas);
@@ -76,7 +79,7 @@
                 labelContainer.innerHTML = "Siap mendeteksi...";
             } catch (err) {
                 console.error(err);
-                alert("Gagal mengakses kamera. Pastikan izin kamera sudah diberikan.");
+                alert("Gagal mengakses kamera. Pastikan akses HTTPS dan izin kamera sudah diberikan.");
             }
         }
 
@@ -99,8 +102,8 @@
                 }
             }
 
-            // Logika Deteksi 60%
-            if (highestProb < 0.60) {
+            // Logika Threshold 85% & Filter Jenis Sampah
+            if (highestProb < 0.85 || bestClassName === "Lainnya" || bestClassName === "Background") {
                 labelContainer.innerHTML = `
                     <div style="padding: 15px; background: #ffe5e5; color: #d63031; border-radius: 10px; font-weight: bold; border: 2px solid #ff7675; width: 280px;">
                         ⚠ Sampah Tidak Terdeteksi
@@ -115,7 +118,6 @@
             }
         }
 
-        // Hamburger & Dark Mode
         const menu = document.querySelector('#mobile-menu');
         const menuLinks = document.querySelector('.nav-list');
         if(menu) {
