@@ -40,11 +40,8 @@
         <div id="label-container" style="margin-top: 25px; display: flex; flex-direction: column; gap: 10px; align-items: center;"></div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
-    
     <script type="text/javascript">
-        // LINK MODEL MISTER DENI
+        // Link model Teachable Machine kamu
         const URL = "https://teachablemachine.withgoogle.com/models/ChYCkSsnW/";
 
         let model, webcam, labelContainer, maxPredictions;
@@ -53,32 +50,28 @@
             const modelURL = URL + "model.json";
             const metadataURL = URL + "metadata.json";
 
-            // Load model dan metadata
+            // Load model AI
             model = await tmImage.load(modelURL, metadataURL);
             maxPredictions = model.getTotalClasses();
 
-            // Setup webcam
-            const flip = true; 
-            webcam = new tmImage.Webcam(320, 240, flip); 
-            await webcam.setup(); 
+            // Pengaturan Kamera Belakang untuk Mobile
+            const width = 320;
+            const height = 240;
+            const flip = false; // Kamera belakang tidak perlu di-mirror
+            webcam = new tmImage.Webcam(width, height, flip); 
+            
+            // Perintah khusus untuk memicu kamera belakang di HP
+            await webcam.setup({ facingMode: "environment" }); 
             await webcam.play();
             window.requestAnimationFrame(loop);
 
-            // Tampilkan canvas kamera
-            document.getElementById("webcam-container").innerHTML = "";
-            document.getElementById("webcam-container").appendChild(webcam.canvas);
+            // Masukkan canvas kamera ke dalam wadah
+            const container = document.getElementById("webcam-container");
+            container.innerHTML = "";
+            container.appendChild(webcam.canvas);
             
             labelContainer = document.getElementById("label-container");
-            labelContainer.innerHTML = ""; // Bersihkan kontainer
-            for (let i = 0; i < maxPredictions; i++) {
-                const labelDiv = document.createElement("div");
-                labelDiv.style.padding = "10px 20px";
-                labelDiv.style.background = "var(--card-bg)";
-                labelDiv.style.borderRadius = "10px";
-                labelDiv.style.width = "250px";
-                labelDiv.style.boxShadow = "0 2px 5px rgba(0,0,0,0.1)";
-                labelContainer.appendChild(labelDiv);
-            }
+            labelContainer.innerHTML = "Menunggu deteksi..."; 
         }
 
         async function loop() {
@@ -89,36 +82,46 @@
 
         async function predict() {
             const prediction = await model.predict(webcam.canvas);
+            
+            // 1. Cari prediksi dengan probabilitas tertinggi
+            let highestProb = 0;
+            let bestClassName = "";
+
             for (let i = 0; i < maxPredictions; i++) {
-                const probability = (prediction[i].probability * 100).toFixed(0);
-                const className = prediction[i].className;
-                
-                // Update teks dan warna berdasarkan probabilitas
-                labelContainer.childNodes[i].innerHTML = `
-                    <span style="float: left;">${className}</span>
-                    <span style="float: right; color: var(--nature-green); font-weight: bold;">${probability}%</span>
-                `;
+                if (prediction[i].probability > highestProb) {
+                    highestProb = prediction[i].probability;
+                    bestClassName = prediction[i].className;
+                }
+            }
+
+            // 2. LOGIKA PERINGATAN (THRESHOLD 60%)
+            // Jika akurasi tertinggi di bawah 60%, tampilkan pesan error
+            if (highestProb < 0.60) {
+                labelContainer.innerHTML = `
+                    <div style="padding: 15px; background: #ffe5e5; color: #d63031; border-radius: 10px; font-weight: bold; border: 2px solid #ff7675; width: 280px; margin: 0 auto;">
+                        ⚠ Sampah Tidak Terdeteksi
+                    </div>`;
+            } else {
+                // Jika terdeteksi di atas 60%, tampilkan nama sampahnya saja
+                const probabilityPercent = (highestProb * 100).toFixed(0);
+                labelContainer.innerHTML = `
+                    <div style="padding: 15px; background: #dff9fb; color: #1b4332; border-radius: 10px; font-weight: bold; border: 2px solid #2d6a4f; width: 280px; margin: 0 auto;">
+                        <span style="float: left;">${bestClassName}</span>
+                        <span style="float: right;">${probabilityPercent}%</span>
+                    </div>`;
             }
         }
 
-        // Hamburger Menu & Dark Mode Logic (Seragamkan dengan index.html)
+        // Script Hamburger Menu agar jalan di HP
         const menu = document.querySelector('#mobile-menu');
         const menuLinks = document.querySelector('.nav-list');
-        menu.addEventListener('click', () => {
-            menuLinks.classList.toggle('active');
-        });
-
-        const toggleBtn = document.getElementById('dark-mode-toggle');
-        if (localStorage.getItem('theme') === 'dark') {
-            document.body.classList.add('dark-mode');
-            toggleBtn.innerText = '☀️';
+        if(menu) {
+            menu.onclick = () => {
+                menu.classList.toggle('is-active');
+                menuLinks.classList.toggle('active');
+            };
         }
-        toggleBtn.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            const isDark = document.body.classList.contains('dark-mode');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            toggleBtn.innerText = isDark ? '☀️' : '🌙';
-        });
     </script>
+    
 </body>
 </html>
